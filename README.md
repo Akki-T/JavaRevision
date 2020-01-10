@@ -1,5 +1,5 @@
-# JavaRevision
-Java Revision and Interview Questions
+Java Interview preparation:
+_____________________________________________________
 
 The core concepts of Java.
 1. Abstraction: Abstraction is a process where you show only “relevant” data and “hide” unnecessary details of an object from the user.
@@ -177,7 +177,7 @@ s.equals(s6) true
 false
 s3.equals(s7) : true
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Design Patterns
 
 1. Creational
@@ -219,3 +219,98 @@ Miscellaneous Design Patterns:
 DAO Design Pattern
 Dependency Injection Pattern
 MVC pattern
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Springboot:
+Is a Spring module which provides RAD (Rapid Application Development) feature to Spring framework.
+It is used to create stand alone spring based application that you can just run because it needs very little spring configuration
+
+
+# What does the @SpringBootApplication annotation do internally?
+
+As per the Spring Boot doc, the @SpringBootApplication annotation is equivalent to using @Configuration, @EnableAutoConfiguration, and @ComponentScan with their default attributes.
+
+
+# What is Spring Actuator? What are its advantages?
+It provides many features, i.e. what beans are created, the mapping in the controller, the CPU usage, etc. Automatically gathering and auditing health and metrics can then be applied to your application.
+
+# How to to change the port of Embedded Tomcat server in Spring boot?
+You can use the application.properties file to change the port. But you need to mention "server.port" (i.e. server.port=8081). Make sure you have application.properties in your project classpath; 
+
+# What is the difference between RequestMapping and GetMapping?
+The @GetMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.GET). Both these methods support the consumes. The consume options are :
+
+consumes = “text/plain”
+consumes = {“text/plain”, “application/*”}
+# Starter packages and purpose:
+spring-boot-starter: – This is the core starter and includes logging, auto-configuration support, and YAML.
+spring-boot-starter-jdbc – This starter is used for HikariCP connection pool with JDBC
+spring-boot-starter-web – Is the starter for building web applications, including RESTful, applications using Spring MVC
+spring-boot-starter-data-jpa – Is the starter to use Spring Data JPA with Hibernate
+spring-boot-starter-security – Is the starter used for Spring Security
+spring-boot-starter-aop: This starter is used for aspect-oriented programming with AspectJ and  Spring AOP
+spring-boot-starter-test: Is the starter for testing Spring Boot applications
+
+#How to connect Springboot application to database:
+configure the database into application properties
+
+spring.datasource.url=jdbc:mysql://localhost:3306/example
+spring.datasource.username=root  
+spring.datasource.password=edureka  
+spring.jpa.hibernate.ddl-auto=create-drop
+
+
+Annotations:
+
+Spring annotations:
+@Autowired to mark a dependency which Spring is going to resolve and inject. We can use this annotation with a constructor, setter, or field injection
+@Bean marks a factory method which instantiates a Spring bean
+@Qualifier along with @Autowired to provide the bean id or bean name we want to use in ambiguous situations.
+@Required on setter methods to mark dependencies that we want to populate through XML
+@Value for injecting property values into beans
+@Lazy when we want to initialize our bean lazily. By default, Spring creates all singleton beans eagerly at the startup/bootstrapping of the application context.
+@Primary : if we mark the most frequently used bean with
+@Scope to define the scope of a @Component class or a @Bean definition
+@Profile - If we want Spring to use a @Component class or a @Bean method only when a specific profile is active
+@Import - We can use specific @Configuration classes without component scanning with this annotation
+@PropertySource - With this annotation, we can define property files for application settings:
+@PropertySources - We can use this annotation to specify multiple @PropertySource configurations:
+
+SpringMVC annotation:
+
+The @RequestMapping annotation is used to provide routing information. It tells to the Spring that any HTTP request should map to the corresponding method
+@RequestMapping it can be configured using:
+path, or its aliases, name, and value: which URL the method is mapped to
+method: compatible HTTP methods
+params: filters requests based on presence, absence, or value of HTTP parameters
+headers: filters requests based on presence, absence, or value of HTTP headers
+consumes: which media types the method can consume in the HTTP request body
+produces: which media types the method can produce in the HTTP response body
+@RequestBody – which maps the body of the HTTP request to an object
+@PathVariable- This annotation indicates that a method argument is bound to a URI template variable. eg:@RequestMapping("/{id}")
+@RequestParam for accessing HTTP request parameters
+@ResponseBody, Spring treats the result of the method as the response itself
+@ExceptionHandler - With this annotation, we can declare a custom error handler method. Spring calls this method when a request handler method throws any of the specified exceptions.
+@ResponseStatus - We can specify the desired HTTP status of the response if we annotate a request handler method with this annotation. We can declare the status code with the code argument, or its alias, the value argument.
+
+Springboot annotations:
+The @RestController annotation combines @Controller and @ResponseBody.
+The @SpringBootApplication is mark the main class of a Spring Boot application: or bootstrap class
+The @EnableAutoConfiguration is used to enable auto-configuration  and component scanning in your project. looks for auto-configuration beans on its classpath and automatically applies them.
+The @Value is used to expose the custom application configuration in Spring Boot
+@ModelAttribute - With this annotation we can access elements that are already in the model of an MVC @Controller, by providing the model key
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Abstract classes:
+
+Can an abstract class implement an interface?
+In Java, an abstract class can implement an interface, and not provide implementations of all of the interface's methods. It is the responsibility of the first concrete class that has that abstract class as an ancestor to implement all of the methods in the interface.
+
+Why does an abstract class have a constructor?
+1) Abstract classes have constructors and those constructors are always invoked when a concrete subclass is instantiated. .2) We know constructor are also used to initialize fields of a class. We also know that abstract classes may contain fields and sometimes they need to be initialized somehow by using constructor
+
+Can we create interface object and abstract class?
+You cannot create an object of abstract class or interface since they are incomplete class (interface is not even considered as a class.)
+
+Does an abstract class have to have an abstract method?
+Yes we can have an abstract class without Abstract Methods as both are independent concepts. Declaring a class abstract means that it can not be instantiated on its own and can only be sub classed. Declaring a method abstract means that Method will be defined in the subclass
